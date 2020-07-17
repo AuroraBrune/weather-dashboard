@@ -1,12 +1,25 @@
-.five {
+.display-4 {
     background-color: blue;
-    height: 200px;
-    width: 150px;
-    margin: 20px;
+    color: white;
+    text-align: center;
+    font-style: oblique;
 }
 
 
+
+.five {
+    background-color: blue;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+}
+.history {
+    background-color: aqua;
+    height: 400px;
+}
+
  .lead {
-    height: 300px;
+    height: 100px;
     padding-right: 100px;
+    margin-left: -300px;
  } 
