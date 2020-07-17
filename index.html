@@ -10,28 +10,79 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./sidebar.css">
 </head>
 
 <body>
-    <div class="jumbotron-fluid">
-        <h1 class="display-4">write here</h1>
-        <p class="lead">and here</p>
-        <hr class="my-4">
-        <p>and here</p>
-        <div class="container"></div>
-        <p class="lead align-right">
-        <div class="row">
-             
-            <div class="col-lg" ></div>
-            <div class="five col-lg" id="day1"></div>
-            <div class="five col-lg" id="day2"></div>
-            <div class="five col-lg" id="day3"></div>
-            <div class="five col-lg" id="day4"></div>
-            <div class="five col-lg" id="day5"></div>
-        </div>
+    <nav class="navbar" id="dash">Weather Dashboard</nav>
 
-        </p>
-    </div>
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">Search for a City: </div>
+            <div class="list-group list-group">
+                <a href="#" class="list-group-item list-group-item-action bg-light">Atlanta</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Seattle</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Sacramento</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Orlando</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Tulsa</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Eudora</a>
+            </div>
+        </div>
+        <div class="jumbotron-fluid">
+            <h1 class="display-4"></h1>
+            <hr class="my-4">
+            <div class="container-city">
+                <ul id="current-city">
+                    <h1>Name date icon</h1>
+                    <li id="temp">Temperature:</li>
+                    <li id="humid">Humidity:</li>
+                    <li id="wind">Wind Speed:</li>
+                    <li id="uv">UV Index: icon</li>
+                </ul>
+            </div>
+            <div class="container"></div>
+            <p class="lead align-right">
+            <div class="container">
+                <h2>Five Day Forecast:</h2>
+                <div class="row">
+                   
+                    <div class="five col-lg" id="day1">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                    <div class="five col-lg" id="day2">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                    <div class="five col-lg" id="day3">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                    <div class="five col-lg" id="day4">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                    <div class="five col-lg" id="day5">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                </div>
+
+            </div>
+            </p>
+        </div>
 
 
 
