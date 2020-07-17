@@ -9,6 +9,7 @@
   -moz-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
+  width: 340px; 
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -17,23 +18,23 @@
 }
 
 #sidebar-wrapper .list-group {
-  width: 15rem;
+  width: 21rem;
+
 }
 
 #page-content-wrapper {
   min-width: 100vw;
 }
 
-#wrapper.toggled #sidebar-wrapper {
-  margin-left: 0;
-}
 
 @media (min-width: 768px) {
   #sidebar-wrapper {
     margin-left: 0;
+    
   }
 
   #page-content-wrapper {
     min-width: 0;
     width: 100%;
   }
+}

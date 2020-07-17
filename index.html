@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
@@ -15,37 +14,73 @@
 </head>
 
 <body>
+    <nav class="navbar" id="dash">Weather Dashboard</nav>
+
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Start Bootstrap </div>
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+            <div class="sidebar-heading">Search for a City: </div>
+            <div class="list-group list-group">
+                <a href="#" class="list-group-item list-group-item-action bg-light">Atlanta</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Seattle</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Sacramento</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Orlando</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Tulsa</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Eudora</a>
             </div>
         </div>
         <div class="jumbotron-fluid">
-            <h1 class="display-4">Weather Dashboard</h1>
-            <!-- <hr class="my-4"> -->
-            <p class="current">and here</p>
-            <!-- <div class="container"></div> -->
-            <p class="lead align-right"> 
+            <h1 class="display-4"></h1>
+            <hr class="my-4">
+            <div class="container-city">
+                <ul id="current-city">
+                    <h1>Name date icon</h1>
+                    <li id="temp">Temperature:</li>
+                    <li id="humid">Humidity:</li>
+                    <li id="wind">Wind Speed:</li>
+                    <li id="uv">UV Index: icon</li>
+                </ul>
+            </div>
+            <div class="container"></div>
+            <p class="lead align-right">
             <div class="container">
-                <div class="row">                  
-                    <div class="col-lg"></div>
-                    <div class="five col-lg" id="day1"></div>
-                    <div class="five col-lg" id="day2"></div>
-                    <div class="five col-lg" id="day3"></div>
-                    <div class="five col-lg" id="day4"></div>
-                    <div class="five col-lg" id="day5"></div>
+                <h2>Five Day Forecast:</h2>
+                <div class="row">
+                   
+                    <div class="five col-lg" id="day1">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                    <div class="five col-lg" id="day2">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                    <div class="five col-lg" id="day3">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                    <div class="five col-lg" id="day4">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                    <div class="five col-lg" id="day5">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
                 </div>
 
-            </div> 
+            </div>
             </p>
         </div>
 

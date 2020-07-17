@@ -1,3 +1,18 @@
+.navbar {
+    display: block;
+    background: blue;
+    color: white;
+}
+#dash {
+    font-size: 30px;
+    text-align: center;
+
+}
+
+hr.my-4 {
+    border: none;
+}
+
 .display-4 {
     background-color: blue;
     color: white;
@@ -5,10 +20,20 @@
     font-style: oblique;
 }
 
+.container-city {
+    border: thin;
+    border-color: grey;
 
+}
+
+#current-city {
+    list-style-type: none;
+    font-size: 30px;
+}
 
 .five {
     background-color: blue;
+    color: white;
     height: 150px;
     width: 150px;
     margin: 20px;
@@ -19,7 +44,7 @@
 }
 
  .lead {
-    height: 100px;
+    height: 50px;
     padding-right: 100px;
     margin-left: -300px;
  } 
