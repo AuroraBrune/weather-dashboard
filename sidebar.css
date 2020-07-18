@@ -17,6 +17,20 @@
   font-size: 1.2rem;
 }
 
+
+
+.select-city {
+  width: 75px;
+  height: 40px;
+  
+}
+
+#submit-city {
+  height: 30px;
+  width: 50px;
+  background-color: green;
+}
+
 #sidebar-wrapper .list-group {
   width: 21rem;
 
