@@ -1,5 +1,5 @@
 //set document ready function
-$(document).ready(function () {
+// $(document).ready(function () {
 
   //on document load, check local storage for existance of a city
   //if found, make ajax call for that city
@@ -11,7 +11,6 @@ $(document).ready(function () {
   var lastCity = localStorage.getItem("lastCity");
   var city = lastCity;
 
-
   var api_key = "8dff016de80855507b8d119c673b5b76";
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + api_key;
 
@@ -19,18 +18,9 @@ $(document).ready(function () {
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
-
-    //current city searched, ends up being lastCity in local storage,
-    //and pulled from storage displayed as current city as page loads.
-    // document.getElementById("current-city").append(lastCity);
 
     //date is given in milliseconds from Jan 1970, converted to current date. 
-
-    // const milliseconds = response.dt;
     var formattedDate = prettyDate(response.dt);
-
-    // document.getElementById("current-date").append(d);
 
     //weather conditions icon code converted to an icon png. displayed as icon
     var iconcode = response.weather[0].icon;
@@ -39,7 +29,6 @@ $(document).ready(function () {
 
     //display current city and date.
     $("#today").html(lastCity + " " + " " + formattedDate);
-
 
     //temp is given in Kelvin. converted to Fahrenheit to one decimal. 
     var tempK = response.main.temp;
@@ -55,8 +44,8 @@ $(document).ready(function () {
     var ws = response.wind.speed;
     $("#wind").html("Wind Speed: " + ws);
 
-    var uvData = getUV(response.coord.lat, response.coord.lon);
-
+    //calling separate function to get uvData
+    getUV(response.coord.lat, response.coord.lon);
 
   })
 
@@ -78,15 +67,32 @@ $(document).ready(function () {
     $.ajax({
       url: queryURL,
       method: "GET"
+
     }).then(function (responseUv) {
-      
+
       var uvData = responseUv.value;
       console.log(responseUv.value);
+      $("#uv").append(uvData + ("<div>"));
+      changeUVcolor(uvData);
 
-      
-
-      return uvData;
     });
+
+
+
+  };
+
+  function changeUVcolor(uvData) {
+    var element = document.getElementById("uv-box");
+    if (uvData < 3) {
+      element.classList.add("normal");
+
+    } else if ((uvData >= 3) && (uvData <= 7)) {
+      element.classList.add("warning");
+
+    } else {
+      element.classList.add("danger");
+    }
+
     //    $("submit-city").click(event); {
     //     event.preventDefault();
     //get value from city choice, var for city,
@@ -103,8 +109,12 @@ $(document).ready(function () {
 
     //if undefined, alert(please add city name)
     //could add further validation to this, but for the scope of this project we'll keep it at this
-  
+
   }
+
+  
+
+
   //on succes      //on click add city to history box. prepend the list
   //create var to hold the response data
   //  
@@ -129,16 +139,39 @@ $(document).ready(function () {
   //append temp display
   //append humidity display
   // };
-});
-// displayCity();
-
-//set last city searched to local storage
-//when page loads, get last city searched from local storage and display on page
 
 
-//to do
 
-//append divs for display of city name in history list
-//write function to display the weather info
 
+  // displayCity();
+
+
+  //current city searched, ends up being lastCity in local storage,
+  //and pulled from storage displayed as current city as page loads.
+  // document.getElementById("current-city").append(lastCity);
+  function updateCityData() {
+    var cityFive = document.getElementById("inputCity").value;
+    if (cityFive == undefined) {
+      alert("Please add city name.");
+    }  else  {
+      document.getElementsByClassName(list-group).prepend(inputCity);
+    }
+    
+  
+    var api_key = "8dff016de80855507b8d119c673b5b76";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + inputCity + "&appid=" + api_key;
+  
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+  
+    }).then(function (responseFive) {
+      console.log(responseFive);
+      
+  
+    });
+  
+  }
+  
+// });
 
