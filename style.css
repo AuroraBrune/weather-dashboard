@@ -57,8 +57,9 @@ hr.my-4 {
 }
 
 .uv-box {
+    text-align: center;
     height: 30px;
-    width: 30px;
+    width: 50px;
     background: white;
 }
 .normal {
