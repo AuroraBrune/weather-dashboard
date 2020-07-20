@@ -3,6 +3,7 @@
     background: blue;
     color: white;
 }
+
 #dash {
     font-size: 30px;
     text-align: center;
@@ -26,6 +27,11 @@ hr.my-4 {
 
 }
 
+
+#wind {
+    padding-left: 0%;
+}
+
 #current-city {
     list-style-type: none;
     font-size: 30px;
@@ -38,13 +44,31 @@ hr.my-4 {
     width: 150px;
     margin: 20px;
 }
+
 .history {
     background-color: aqua;
     height: 400px;
 }
 
- .lead {
+.lead {
     height: 50px;
     padding-right: 100px;
     margin-left: -300px;
- } 
+}
+
+.uv-box {
+    height: 30px;
+    width: 30px;
+    background: white;
+}
+.normal {
+    background-color: green;
+}
+
+.warning {
+    background-color: yellow;
+}
+
+.danger {
+    background-color: red;
+}
