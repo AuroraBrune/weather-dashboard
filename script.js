@@ -96,7 +96,7 @@ function changeUVcolor(uvData) {
   //    $("submit-city").click(event); {
   //     event.preventDefault();
   //get value from city choice, var for city,
-  var cityChoice = $("#lastCity").val().trim();
+  
 
   //                                                  //set click function for ajax call for that city
   //                                                  //on click, clear the input box
@@ -130,7 +130,7 @@ function changeUVcolor(uvData) {
 //append temp display
 //append humidity display logic to trigger css
 
-//create icon for the uv rating
+
 //create vars for each day of five day forecast: date, icon for conditions, temp, humidity
 //append the data to each day of five day displays
 
@@ -153,10 +153,9 @@ function updateCityData() {
   var cityFive = document.getElementById("inputCity").value;
   if (cityFive == undefined) {
     alert("Please add city name.");
-    // }  else  {
-    //   document.getElementsByClassName(list-group).prepend(inputCity);
+     }  else  {
+      //document.getElementsByClassName(list-group).prepend(inputCity);
   }
-
 
   var api_key = "8dff016de80855507b8d119c673b5b76";
   var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityFive + "&appid=" + api_key;
@@ -166,12 +165,18 @@ function updateCityData() {
     method: "GET"
 
   }).then(function (responseFive) {
+    
     console.log(responseFive);
-
+    var dateStr = responseFive.list[i].dt_txt;
+    var date = "";
+    date = dateStr.slice(11, 13);
+    
+    console.log(date);
+    var dateOne = prettyDate(date);
+    console.log(dateOne);
+     $(".date1day").text(dateOne);
 
   });
-
 }
-
-// });
-
+  
+// var cityChoice = $("#lastCity").val().trim();
