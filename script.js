@@ -283,13 +283,13 @@ function clearDashboard() {
   }
 
 //attempting to clear input from uv index, but didn't work. I'll keep looking for a solution. 
-function clearUV() {
-  var dispUV = "uv"
-  // var i;
-  // for (i = 0; i < 1; i++);
-  var parentNode = document.getElementById(dispUV);
-  parentNode.querySelectorAll('*').forEach(n => n.remove());
-}
+// function clearUV() {
+//   var dispUV = "uv"
+//   // var i;
+//   // for (i = 0; i < 1; i++);
+//   var parentNode = document.getElementById(dispUV);
+//   parentNode.querySelectorAll('*').forEach(n => n.remove());
+// }
 
 
 
