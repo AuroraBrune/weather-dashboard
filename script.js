@@ -281,20 +281,10 @@ function clearDashboard() {
     parentNode.querySelectorAll('*').forEach(n => n.remove());
     j++;
   }
-
-//attempting to clear input from uv index, but didn't work. I'll keep looking for a solution. 
-// function clearUV() {
-//   var dispUV = "uv"
-//   // var i;
-//   // for (i = 0; i < 1; i++);
-//   var parentNode = document.getElementById(dispUV);
-//   parentNode.querySelectorAll('*').forEach(n => n.remove());
-// }
-
-
-
-
 }
+//attempting to clear input from uv index, but didn't work. I'll keep looking for a solution. 
+
+
 
 //on success      //on click add city to history box. prepend the list
 //create var to hold the response data
