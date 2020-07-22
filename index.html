@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="./sidebar.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
 </head>
 
 <body>
@@ -24,22 +24,17 @@
         <!-- Sidebar for the city search button/input and history of cities that have been searched-->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <P class="sidebar-heading">Please select city:</P>
-            <input id="inputCity" value="Topeka"></input>
+            <input id="inputCity"></input>
             <button id="submit-city" type="button" onclick='updateCityData()'>Enter</button>
-            <div class="list-group list-group">
-                <a href="#" class="list-group-item list-group-item-action bg-light">Atlanta</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Seattle</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Sacramento</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Orlando</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Tulsa</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Eudora</a>
+            <div class="list-group list-group" id="histList">
+
             </div>
         </div>
         <div class="jumbotron-fluid">
             <h1 class="display-4"></h1>
             <hr class="my-4">
             <div class="container-city">
-                <!--Display the current city chosen and current weather-->
+                <!--Display current weather for the current city chosen-->
 
                 <div id="today"></div>
                 <p id="current-city"></p>
@@ -48,25 +43,25 @@
 
                 <!-- alt="Weather icon" -->
                 <ul>
-                <div class="containerT">
-                    <div class="row">
-                        <div class="column-sm" id="temp">Temperature: </div>
-                    </div>
-                    <div class="row">
-                        <div class="column-sm" id="humid">Humidity:</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm" id="wind">Wind Speed:</div>
-                    </div>
-                    <div class="row">
-                        <div class="column-sm" id="uv">UV Index: </div>
-                        <div class="column-sm"></div>
-                        
-                        <div class="column-sm uv-box" id="uv-box"></div>
-                        </row>
+                    <div class="containerT">
+                        <div class="row">
+                            <div class="column-sm" id="temp">Temperature: </div>
+                        </div>
+                        <div class="row">
+                            <div class="column-sm" id="humid">Humidity:</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm" id="wind">Wind Speed:</div>
+                        </div>
+                        <div class="row">
+                            <div class="column-sm" id="uv">UV Index: </div>
+                            <div class="column-sm"></div>
 
+                            <div class="column-sm uv-box" id="uv-box"></div>
+                            </row>
+                          
+                        </div>
                     </div>
-                </div>
                 </ul>
 
                 <div class="container"></div>
@@ -75,43 +70,26 @@
                 <div class="container">
 
 
-                    <!--Display the five day forecast for the currently chosen city-->
+                    <!--Divs to display the five day forecast for the currently chosen city-->
                     <h2>Five Day Forecast:</h2>
                     <div class="row">
 
                         <div class="five col-lg" id="day1">
-                            <!-- <p class="date1day"></p>
-                            <p class="cond1day"></p>
-                            <p class="temp1day"></p>
-                            <p class="humid1day"></p> -->
 
                         </div>
                         <div class="five col-lg" id="day2">
-                            <!-- <p class="date2day"></p>
-                            <p class="cond2day"></p>
-                            <p class="temp2day"></p>
-                            <p class="humid2day"></p> -->
 
                         </div>
                         <div class="five col-lg" id="day3">
-                            <!-- <p class="date3day"></p>
-                            <p class="cond3day"></p>
-                            <p class="temp3day"></p>
-                            <p class="humid3day"></p> -->
+
 
                         </div>
                         <div class="five col-lg" id="day4">
-                            <!-- <p class="date4day"></p>
-                            <p class="cond4day"></p>
-                            <p class="temp4day"></p>
-                            <p class="humid4day"></p> -->
+
 
                         </div>
                         <div class="five col-lg" id="day5">
-                            <!-- <p class="date5day"></p>
-                            <p class="cond5day"></p>
-                            <p class="temp5day"></p>
-                            <p class="humid5day"></p> -->
+
 
                         </div>
                     </div>
@@ -120,7 +98,7 @@
                 </p>
             </div>
         </div>
-       
+
 </body>
 
 </html>
