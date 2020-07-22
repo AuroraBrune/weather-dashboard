@@ -44,7 +44,7 @@ $.ajax({
 
   //calling separate function to get uvData
   getUV(response.coord.lat, response.coord.lon);
-
+  getForecast();
 })
 //function to convert date to current day, to be used in each instance of date.
 function prettyDate(resultDate) {
@@ -102,18 +102,11 @@ function changeUVcolor(uvData) {
 
 }
 
-function updateCityData() {
-
-  var cityFive = document.getElementById("inputCity").value;
-  if (cityFive == undefined) {
-    alert("Please add city name.");
-  } else {
-    //  document.getElementsByClassName(list-group).prepend(inputCity);
-  }
+function getForecast() {
   //api call for the five day forecast.
   var api_key = "8dff016de80855507b8d119c673b5b76";
-  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityFive + "&appid=" + api_key;
-  console.log(cityFive);
+  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + api_key;
+
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -185,12 +178,123 @@ function updateCityData() {
       }
     }
 
-
-
   });
 }
 
+function updateCityData() {
+  clearDashboard();
 
+  if (document.getElementById("inputCity").value != undefined) {
+    if (document.getElementById("inputCity").value != "") {
+        
+      lastCity = document.getElementById("inputCity").value;
+      city = lastCity;
+      makeChanges(city);
+  
+
+    }
+  }
+}
+
+function historyClick(id){
+  clearDashboard();
+  clearUV();
+  city =document.getElementById(id).innerHTML;
+// call with history city
+makeChanges(city); 
+
+}
+
+var k = 1;
+function makeChanges(city){
+
+      queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + api_key;
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
+        console.log(response);
+        lastCity = city;
+        //date is given in milliseconds from Jan 1970, converted to current date. 
+        var formattedDate = prettyDate(response.dt);
+
+        //weather conditions icon code converted to an icon png. displayed as icon
+        var iconcode = response.weather[0].icon;
+        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        $('#wicon').attr('src', iconurl);
+
+        //display current city and date.
+        // var city = document.getElementById("inputCity").value;
+        $("#today").html(lastCity + " " + " " + formattedDate);
+        // console.log(city);
+        //temp is given in Kelvin. converted to Fahrenheit to one decimal. 
+        var tempK = response.main.temp;
+        var tempF = (tempK - 273.15) * 1.80 + 32;
+        var far = tempF.toFixed(1);
+        $('#temp').html("Temperature: " + far + "&deg;" + "F");
+
+        //humidity display with % symbol
+        var hum = response.main.humidity
+        $("#humid").html("Humidity: " + hum + "&#37;");
+
+        //Wind Speed
+        var ws = response.wind.speed;
+        $("#wind").html("Wind Speed: " + ws + " " + "MPH");
+
+        //calling separate function to get uvData
+        getUV(response.coord.lat, response.coord.lon);
+
+        getForecast();
+        localStorage.setItem("lastCity", lastCity);
+
+        // add it to the history
+        
+        var histDiv = document.getElementById("histList"); 
+        var button = document.createElement('BUTTON');  
+        var text = document.createTextNode(lastCity); 
+        button.appendChild(text); 
+        button.setAttribute("id", lastCity + k);
+        histDiv.appendChild(button);
+        button.addEventListener("click", function (){ 
+          
+          historyClick(this.id);
+         
+        }); 
+        k++;
+      }).catch(function(xhr, ajaxOptions, thrownError) {   
+          $("#current-date").text("Please enter a valid city name.")
+          // normally this would go to an error message element that is display in redish
+          
+      })
+
+}
+
+//function to clear the five day display data so next city chosen can display. 
+function clearDashboard() {
+  var i;
+  var j = 1;
+
+  for (i = 0; i < 5; i++) {
+    var dispId = "day" + j;
+    var parentNode = document.getElementById(dispId);
+    parentNode.querySelectorAll('*').forEach(n => n.remove());
+    j++;
+  }
+
+//attempting to clear input from uv index, but didn't work. I'll keep looking for a solution. 
+function clearUV() {
+  var dispUV = "uv"
+  // var i;
+  // for (i = 0; i < 1; i++);
+  var parentNode = document.getElementById(dispUV);
+  parentNode.querySelectorAll('*').forEach(n => n.remove());
+}
+
+
+
+
+}
 
 //on success      //on click add city to history box. prepend the list
 //create var to hold the response data

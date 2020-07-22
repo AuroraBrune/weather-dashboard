@@ -57,10 +57,11 @@ hr.my-4 {
 }
 
 .uv-box {
-    text-align: right;
+    text-align: center;
     height: 30px;
     width: 50px;
     background: white;
+    
 }
 .normal {
     background-color: green;
@@ -72,4 +73,8 @@ hr.my-4 {
 
 .danger {
     background-color: red;
+}
+
+p {
+    margin-bottom: 2px;
 }
