@@ -68,10 +68,8 @@ function getUV(lat, lon) {
   }).then(function (responseUv) {
     //get uv data from response and display it.
     var uvData = responseUv.value;
-    console.log(responseUv.value);
     $("#uv-box").append(uvData + ("<div>"));
     changeUVcolor(uvData);
-
   });
 
 };
@@ -183,7 +181,7 @@ function getForecast() {
 
 function updateCityData() {
   clearDashboard();
-
+ 
   if (document.getElementById("inputCity").value != undefined) {
     if (document.getElementById("inputCity").value != "") {
         
@@ -198,7 +196,7 @@ function updateCityData() {
 
 function historyClick(id){
   clearDashboard();
-  clearUV();
+  $("#uv").empty();
   city =document.getElementById(id).innerHTML;
 // call with history city
 makeChanges(city); 
@@ -281,6 +279,8 @@ function clearDashboard() {
     parentNode.querySelectorAll('*').forEach(n => n.remove());
     j++;
   }
+
+  document.getElementById("uv-box").innerHTML = "";
 }
 //attempting to clear input from uv index, but didn't work. I'll keep looking for a solution. 
 
