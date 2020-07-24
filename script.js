@@ -2,9 +2,6 @@
 //if found, make ajax call for that city
 //on success, call function for new city
 
-//setting a city in local storage for start of weather dashboard so a weather data loads the first time
-// localStorage.setItem("lastCity", "Kansas City");
-
 var lastCity = localStorage.getItem("lastCity");
 var city = lastCity;
 
@@ -42,7 +39,7 @@ $.ajax({
   var ws = response.wind.speed;
   $("#wind").html("Wind Speed: " + ws + " " + "MPH");
 
-  //calling separate function to get uvData
+  //calling separate function to get uvData api call needs lat and lon coordinates for city
   getUV(response.coord.lat, response.coord.lon);
   getForecast();
 })
@@ -86,18 +83,6 @@ function changeUVcolor(uvData) {
   } else {
     element.classList.add("danger");
   }
-
-  //on click, clear the input box
-  // document.getElementById("lastCity").clear;
-
-  // $("#lastCity").get().reset();
-  //test value of input box to see if input undefined
-  // if (lastCity == undefined) {
-  //     alert("Please add city name.");
-
-  //if undefined, alert(please add city name)
-  //could add further validation to this, but for the scope of this project we'll keep it at this
-
 }
 
 function getForecast() {
@@ -135,7 +120,6 @@ function getForecast() {
         node.appendChild(textnode);
         divCont.appendChild(node);
 
-
         //_____________________________________
         // icon is ready for display
         var iconF = responseFive.list[i].weather[0].icon;
@@ -161,7 +145,6 @@ function getForecast() {
         divCont.appendChild(node);
 
         //_____________________________________
-
         var humidFive = responseFive.list[i].main.humidity;
         humidFive = responseFive.list[i].main.humidity;
         // humidity is ready for display
@@ -172,102 +155,94 @@ function getForecast() {
         divCont.appendChild(node);
 
         j++;
-
       }
     }
-
   });
 }
 
 function updateCityData() {
   clearDashboard();
- 
+
   if (document.getElementById("inputCity").value != undefined) {
     if (document.getElementById("inputCity").value != "") {
-        
+
       lastCity = document.getElementById("inputCity").value;
       city = lastCity;
       makeChanges(city);
-  
-
     }
   }
 }
 
-function historyClick(id){
+function historyClick(id) {
   clearDashboard();
   $("#uv").empty();
-  city =document.getElementById(id).innerHTML;
-// call with history city
-makeChanges(city); 
-
+  city = document.getElementById(id).innerHTML;
+  // call with history city
+  makeChanges(city);
 }
 
 var k = 1;
-function makeChanges(city){
+function makeChanges(city) {
+  queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + api_key;
 
-      queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + api_key;
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (response) {
+    console.log(response);
+    lastCity = city;
+    //date is given in milliseconds from Jan 1970, converted to current date. 
+    var formattedDate = prettyDate(response.dt);
 
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).then(function (response) {
-        console.log(response);
-        lastCity = city;
-        //date is given in milliseconds from Jan 1970, converted to current date. 
-        var formattedDate = prettyDate(response.dt);
+    //weather conditions icon code converted to an icon png. displayed as icon
+    var iconcode = response.weather[0].icon;
+    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    $('#wicon').attr('src', iconurl);
 
-        //weather conditions icon code converted to an icon png. displayed as icon
-        var iconcode = response.weather[0].icon;
-        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-        $('#wicon').attr('src', iconurl);
+    //display current city and date.
+    // var city = document.getElementById("inputCity").value;
+    $("#today").html(lastCity + " " + " " + formattedDate);
+    // console.log(city);
+    //temp is given in Kelvin. converted to Fahrenheit to one decimal. 
+    var tempK = response.main.temp;
+    var tempF = (tempK - 273.15) * 1.80 + 32;
+    var far = tempF.toFixed(1);
+    $('#temp').html("Temperature: " + far + "&deg;" + "F");
 
-        //display current city and date.
-        // var city = document.getElementById("inputCity").value;
-        $("#today").html(lastCity + " " + " " + formattedDate);
-        // console.log(city);
-        //temp is given in Kelvin. converted to Fahrenheit to one decimal. 
-        var tempK = response.main.temp;
-        var tempF = (tempK - 273.15) * 1.80 + 32;
-        var far = tempF.toFixed(1);
-        $('#temp').html("Temperature: " + far + "&deg;" + "F");
+    //humidity display with % symbol
+    var hum = response.main.humidity
+    $("#humid").html("Humidity: " + hum + "&#37;");
 
-        //humidity display with % symbol
-        var hum = response.main.humidity
-        $("#humid").html("Humidity: " + hum + "&#37;");
+    //Wind Speed
+    var ws = response.wind.speed;
+    $("#wind").html("Wind Speed: " + ws + " " + "MPH");
 
-        //Wind Speed
-        var ws = response.wind.speed;
-        $("#wind").html("Wind Speed: " + ws + " " + "MPH");
+    //calling separate function to get uvData
+    getUV(response.coord.lat, response.coord.lon);
 
-        //calling separate function to get uvData
-        getUV(response.coord.lat, response.coord.lon);
+    getForecast();
+    localStorage.setItem("lastCity", lastCity);
 
-        getForecast();
-        localStorage.setItem("lastCity", lastCity);
+    // add current city  to the history
+    var histDiv = document.getElementById("histList");
+    var button = document.createElement('BUTTON');
+    var text = document.createTextNode(lastCity);
+    button.appendChild(text);
+    button.setAttribute("id", lastCity + k);
+    histDiv.appendChild(button);
+    button.addEventListener("click", function () {
 
-        // add it to the history
-        
-        var histDiv = document.getElementById("histList"); 
-        var button = document.createElement('BUTTON');  
-        var text = document.createTextNode(lastCity); 
-        button.appendChild(text); 
-        button.setAttribute("id", lastCity + k);
-        histDiv.appendChild(button);
-        button.addEventListener("click", function (){ 
-          
-          historyClick(this.id);
-         
-        }); 
-        k++;
-      }).catch(function(xhr, ajaxOptions, thrownError) {   
-          $("#current-date").text("Please enter a valid city name.")
-          // normally this would go to an error message element that is display in redish
-          
-      })
+      historyClick(this.id);
+
+    });
+    k++;
+  }).catch(function (xhr, ajaxOptions, thrownError) {
+    $("#current-date").text("Please enter a valid city name.")
+    // normally this would go to an error message element that is display in redish
+
+  })
 
 }
-
 //function to clear the five day display data so next city chosen can display. 
 function clearDashboard() {
   var i;
@@ -282,15 +257,9 @@ function clearDashboard() {
 
   document.getElementById("uv-box").innerHTML = "";
 }
-//attempting to clear input from uv index, but didn't work. I'll keep looking for a solution. 
-
-
 
 //on success      //on click add city to history box. prepend the list
 //create var to hold the response data
-
-
-
 //current city searched, ends up being lastCity in local storage,
 //and pulled from storage displayed as current city as page loads.
 // document.getElementById("current-city").append(lastCity);
