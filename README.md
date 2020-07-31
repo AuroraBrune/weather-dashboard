@@ -44,6 +44,8 @@ You are required to submit the following for review:
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+
+- - - 
 ![weather-dashboard](./Assets/Weather-Dashboard.jpg)
 ![weather-dashboard](./Assets/responsiveWeatherDashboard.jpg)
  Copyright 2020, Aurora Brune
